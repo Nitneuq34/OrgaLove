@@ -10,7 +10,7 @@ prestations :
     nom : monsite
     exécution : python
     Commande de construction : './build.sh' 
-    Commande de démarrage : 'uvicorn orga_love.asgi:application --host 0.0.0.0 --port 8000
+    Commande de démarrage : Commande de démarrage : 'python -m gunicorn orgalove.asgi:application -k uvicorn.workers.UvicornWorker' 
     envVars :
       - clé : URL_BASE_DE_DONNEES 
         de la base de données :
