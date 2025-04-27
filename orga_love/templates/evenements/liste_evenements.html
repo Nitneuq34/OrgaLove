@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des événements - Mon PGI Couple{% endblock %}
+
+{% block content %}
+    <h1>Liste des événements</h1>
+
+    <p>
+        <a href="{% url 'evenements:ajouter' %}" class="btn btn-primary mb-3">Ajouter un nouvel événement</a>
+    </p>
+
+    {% if evenements %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Heure de début</th>
+                    <th>Heure de fin</th>
+                    <th>Lieu</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evenement in evenements %}
+                    <tr>
+                        <td><a href="{% url 'evenements:detail' evenement.id %}">{{ evenement.titre }}</a></td>
+                        <td>{{ evenement.date|date:"d/m/Y" }}</td>
+                        <td>{{ evenement.heure_debut|time:"H:i" }}</td>
+                        <td>{{ evenement.heure_fin|time:"H:i" }}</td>
+                        <td>{{ evenement.lieu }}</td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-warning">Modifier</a>
+                            <a href="#" class="btn btn-sm btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun événement à afficher.</p>
+    {% endif %}
+{% endblock %}
